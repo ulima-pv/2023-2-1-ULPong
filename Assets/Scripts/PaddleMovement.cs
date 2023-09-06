@@ -24,4 +24,6 @@ public class PaddleMovement : MonoBehaviour
         );
         transform.position = newPos; // Actualizamos la posicion
     }
+
+    
 }
