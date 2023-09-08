@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,30 @@ public class BallMovement : MonoBehaviour
     public float MinSpeedY = -4f;
     public float MaxSpeedY = 4f;
     public GameManager gameManager;
+
+    private void Start() 
+    {
+        // Inscribir como observador
+        gameManager.OnPauseGame += Pause;
+        gameManager.OnRestartGame += Restart;
+    }
+
+    private void Restart()
+    {
+        SpeedX = -4f;
+        SpeedY = 0f;
+        transform.position = new Vector3(
+            0f,
+            0f,
+            0f
+        );
+    }
+
+    private void Pause()
+    {
+        SpeedX = 0f;
+        SpeedY = 0f;
+    }
 
     private void Update() 
     {
@@ -38,12 +63,6 @@ public class BallMovement : MonoBehaviour
             {   
                 gameManager.Goal(0); // mete gol el de la izquierda
             }
-            
-            transform.position = new Vector3(
-                0f,
-                0f,
-                0f
-            );
         }
     }
 }
