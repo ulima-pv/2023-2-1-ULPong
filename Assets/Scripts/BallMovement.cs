@@ -8,6 +8,7 @@ public class BallMovement : MonoBehaviour
     public float SpeedY = 0f;
     public float MinSpeedY = -4f;
     public float MaxSpeedY = 4f;
+    public GameManager gameManager;
 
     private void Update() 
     {
@@ -30,6 +31,14 @@ public class BallMovement : MonoBehaviour
             SpeedY = SpeedY * -1f;
         }else if (other.transform.CompareTag("Goal"))
         {
+            if (other.transform.name == "LeftGoal")
+            {
+                gameManager.Goal(1); // mete gol el de la derecha
+            }else
+            {   
+                gameManager.Goal(0); // mete gol el de la izquierda
+            }
+            
             transform.position = new Vector3(
                 0f,
                 0f,
